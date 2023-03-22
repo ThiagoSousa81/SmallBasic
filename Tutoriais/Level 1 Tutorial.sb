@@ -1,0 +1,29 @@
+'Os desafios do final do tutorial iriam aqui
+'Você precisa defini-las ANTES que a tartaruga comece a se mover
+GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+Turtle.Speed = 7
+
+'Lição 2: Olá, Tartaruga
+Turtle.Show()
+
+'Lição 3: Vamos dar algo à tartaruga para fazer
+GraphicsWindow.DrawImage("https://aka.ms/mz1", 0, 0)
+Turtle.X = 50
+Turtle.Y = 50
+
+'Lição 4: mexa-se!
+Turtle.TurnRight()
+Turtle.Move(200)
+Turtle.TurnRight()
+
+Turtle.Move(150)
+Turtle.TurnRight()
+Turtle.Move(200)
+Turtle.TurnLeft()
+Turtle.Move(50)
+
+'Desafio: dança de celebração (esta é a minha dança, qual é a sua?)
+Turtle.TurnLeft()
+Turtle.TurnRight()
+Turtle.TurnRight()
+Turtle.TurnLeft()

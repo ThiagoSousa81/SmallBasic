@@ -1,0 +1,25 @@
+'This program was developed by Corporation I!
+GraphicsWindow.BackgroundColor="Black"
+GraphicsWindow.BrushColor="white"
+GraphicsWindow.DrawText(x, y, "Este programa foi desenvolvido em homenagem a estilhaço (27/02/2020). ")
+GraphicsWindow.DrawText(x, 13, "Aperte qualquer tecla para iniciar-lo! ")
+v = textw.
+If () Then
+GraphicsWindow.Clear()
+EndIf
+Turtle.Show()
+GraphicsWindow.BackgroundColor="Beige"
+TextWindow.Read()
+Turtle.Turn(25)
+Turtle.Move(150)
+Turtle.Turn(125)
+Turtle.Move(150)
+Turtle.Turn(150)
+Turtle.Move(175)
+Turtle.Turn(150)
+Turtle.Move(150)
+Turtle.Turn(145)
+Turtle.Move(167)
+Turtle.PenUp()
+Turtle.Turn(305)
+Turtle.Hide()

@@ -1,0 +1,176 @@
+TextWindow.ForegroundColor="green"
+TextWindow.WriteLine("Desenhando com a tartaruga!")
+GraphicsWindow.BackgroundColor="beige"
+Turtle.Show()
+TextWindow.WriteLine("Digite o angulo.")
+Angulo0 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo0)
+TextWindow.WriteLine("Digite a distância.")
+Distance0 = TextWindow.ReadNumber()
+Turtle.Move(Distance0)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição0 = TextWindow.ReadNumber()
+If Condição0 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown()    
+        EndIf
+        TextWindow.Clear()
+TextWindow.WriteLine("Digite o angulo.")
+Angulo1 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo1)
+TextWindow.WriteLine("Digite a distância.")
+Distance1 = TextWindow.ReadNumber()
+Turtle.Move(Distance1)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição1 = TextWindow.ReadNumber()
+If Condição1 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+TextWindow.WriteLine("Digite o angulo.")
+Angulo2 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo2)
+TextWindow.WriteLine("Digite a distância.")
+Distance2 = TextWindow.ReadNumber()
+Turtle.Move(Distance2)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição2 = TextWindow.ReadNumber()
+If Condição2 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+TextWindow.WriteLine("Digite o angulo.")
+Angulo3 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo3)
+TextWindow.WriteLine("Digite a distância.")
+Distance3 = TextWindow.ReadNumber()
+Turtle.Move(Distance3)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição3 = TextWindow.ReadNumber()
+If Condição3 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+
+TextWindow.WriteLine("Digite o angulo.")
+Angulo4 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo4)
+TextWindow.WriteLine("Digite a distância.")
+Distance4 = TextWindow.ReadNumber()
+Turtle.Move(Distance4)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição4 = TextWindow.ReadNumber()
+If Condição4 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+TextWindow.WriteLine("Digite o angulo.")
+Angulo5 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo5)
+TextWindow.WriteLine("Digite a distância.")
+Distance5 = TextWindow.ReadNumber()
+Turtle.Move(Distance5)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição5 = TextWindow.ReadNumber()
+If Condição5 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+
+TextWindow.WriteLine("Digite o angulo.")
+Angulo6 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo6)
+TextWindow.WriteLine("Digite a distância.")
+Distance6 = TextWindow.ReadNumber()
+Turtle.Move(Distance6)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição6 = TextWindow.ReadNumber()
+If Condição6 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+        TextWindow.WriteLine("Digite o angulo.")
+Angulo7 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo7)
+TextWindow.WriteLine("Digite a distância.")
+Distance7 = TextWindow.ReadNumber()
+Turtle.Move(Distance7)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição7 = TextWindow.ReadNumber()
+If Condição7 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+        TextWindow.WriteLine("Digite o angulo.")
+Angulo8 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo8)
+TextWindow.WriteLine("Digite a distância.")
+Distance8 = TextWindow.ReadNumber()
+Turtle.Move(Distance8)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição8 = TextWindow.ReadNumber()
+If Condição8 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+TextWindow.WriteLine("Digite o angulo.")
+Angulo9 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo9)
+TextWindow.WriteLine("Digite a distância.")
+Distance9 = TextWindow.ReadNumber()
+Turtle.Move(Distance9)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição9 = TextWindow.ReadNumber()
+If Condição9 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+        TextWindow.WriteLine("Digite o angulo.")
+Angulo10 = TextWindow.ReadNumber()
+Turtle.Turn(Angulo10)
+TextWindow.WriteLine("Digite a distância.")
+Distance10 = TextWindow.ReadNumber()
+Turtle.Move(Distance10)
+TextWindow.WriteLine("Quer parar de riscar?")
+TextWindow.WriteLine("Aperte 1 para parar e 2 para continuar:")
+Condição10 = TextWindow.ReadNumber()
+If Condição10 = 1 Then
+    Turtle.PenUp()
+    Else
+    Turtle.PenDown() 
+        EndIf
+        TextWindow.Clear()
+
+
+
+
+

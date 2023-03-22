@@ -1,0 +1,7 @@
+
+
+TextWindow.Writeline=("4our Elements")
+TextWindow.ForegroundColor="blue"
+TextWindow.Writeline=("I am ...")
+TextWindow.ForegroundColor="Yellow"
+TextWindow.Writeline=("I am ...")

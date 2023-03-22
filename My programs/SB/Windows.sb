@@ -1,0 +1,89 @@
+'  A New progam!
+
+Mouse.HideCursor()
+GraphicsWindow.BackgroundColor="Black"
+TextWindow.WriteLine("Press 4 and key to start!")
+Number=TextWindow.ReadNumber()
+GraphicsWindow.BackgroundColor="Gray"
+Turtle.Show()
+Turtle.Hide()
+TextWindow.WriteLine("Loading...")
+TextWindow.Clear()
+TextWindow.WriteLine("Loading...")
+Turtle.Turn(180)
+Turtle.PenUp()
+GraphicsWindow.FontSize=(20)
+GraphicsWindow.BrushColor="White"
+GraphicsWindow.DrawText(250, 500, "Iniciando o Windows 95!")
+Turtle.PenDown()
+Turtle.TurnRight()
+Turtle.Move(60)
+Turtle.TurnLeft()
+Turtle.Move(120)
+Turtle.TurnLeft()
+Turtle.Move(60)
+Turtle.TurnLeft()
+Turtle.Move(120)
+Turtle.TurnRight()
+Turtle.Move(60)
+Turtle.TurnRight()
+Turtle.Move(60)
+Turtle.TurnRight()
+Turtle.Move(120)
+Turtle.Turn(180)
+Turtle.PenUp()
+Turtle.Move(120)
+Turtle.PenDown()
+Turtle.TurnRight()
+Turtle.Move(60)
+Turtle.TurnRight()
+Turtle.Move(60)
+Turtle.PenUp()
+Turtle.Turn(180)
+Turtle.Move(120)
+Turtle.TurnLeft()
+Turtle.Move(200)
+Turtle.PenDown()
+Turtle.Hide()
+GraphicsWindow.Clear()
+GraphicsWindow.BrushColor="red"
+GraphicsWindow.FillRectangle(0, 550, 50, 50)
+GraphicsWindow.BrushColor="green"
+GraphicsWindow.FillRectangle(50, 550, 50, 50)
+GraphicsWindow.BrushColor="Blue"
+GraphicsWindow.FillRectangle(0, 600, 50, 50)
+GraphicsWindow.BrushColor="yellow"
+GraphicsWindow.FillRectangle(50, 600, 50, 50)
+GraphicsWindow.BrushColor="Black"
+GraphicsWindow.DrawLine(0, 550, 900, 550)
+GraphicsWindow.BackgroundColor="Beige"
+
+If Clock.hour < 18 Then
+    TextWindow.WriteLine("Good morning!")
+Else
+    TextWindow.WriteLine("Good evening!")
+EndIf  
+TextWindow.ForegroundColor="Beige"
+TextWindow.WriteLine("Windows 10 ultimate operating system")
+TextWindow.WriteLine("Password")
+TextWindow.ForegroundColor="yelow"
+Password=TextWindow.ReadNumber()
+TextWindow.ForegroundColor="Beige"
+If Password=010001010 Then
+    Mouse.ShowCursor(  )
+    Textwindow.Writeline("Opening user.")
+    Textwindow.Writeline("Starting Windows...")
+    Mouse.ShowCursor()
+  EndIf
+  
+  'Simbolo da Microsoft
+  GraphicsWindow.BrushColor="red"
+GraphicsWindow.FillRectangle(0, 550, 50, 50)
+GraphicsWindow.BrushColor="green"
+GraphicsWindow.FillRectangle(50, 550, 50, 50)
+GraphicsWindow.BrushColor="Blue"
+GraphicsWindow.FillRectangle(0, 600, 50, 50)
+GraphicsWindow.BrushColor="yellow"
+GraphicsWindow.FillRectangle(50, 600, 50, 50)
+GraphicsWindow.BrushColor="Black"
+GraphicsWindow.DrawLine(0, 550, 900, 550)

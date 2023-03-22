@@ -1,0 +1,119 @@
+' Calculadora do Windows95!
+TextWindow.BackgroundColor="Blue"
+TextWindow.ForegroundColor="Yellow"
+GraphicsWindow.BackgroundColor="Beige"
+TextWindow.WriteLine("Loading...")
+GraphicsWindow.BrushColor="red"
+GraphicsWindow.FillRectangle(2, 550, 50, 50)
+GraphicsWindow.BrushColor="green"
+GraphicsWindow.FillRectangle(52, 550, 50, 50)
+GraphicsWindow.BrushColor="Blue"
+GraphicsWindow.FillRectangle(2, 600, 50, 50)
+GraphicsWindow.BrushColor="yellow"
+GraphicsWindow.FillRectangle(52, 600, 50, 50)
+GraphicsWindow.BrushColor="Black"
+GraphicsWindow.DrawLine(0, 550, 900, 550)
+GraphicsWindow.DrawLine(1, -1, 1, 650)
+GraphicsWindow.FontSize="60"
+GraphicsWindow.BrushColor="Blue"
+GraphicsWindow.DrawText(250, 250, "Windows 95")
+Turtle.Hide()
+Turtle.TurnLeft()
+Turtle.move(100)
+Turtle.TurnLeft()
+Turtle.move(100)
+Turtle.TurnLeft()
+Turtle.move(400)
+Turtle.TurnLeft()
+Turtle.move(100)
+Turtle.TurnLeft()
+Turtle.move(300)
+Turtle.PenUp()
+Turtle.Move(200)
+Turtle.TurnLeft()
+Turtle.Hide()
+TextWindow.Clear()
+
+Textwindow.WriteLine("Simple Calculator...")
+Textwindow.WriteLine("Digite o operador (1=+; 2=-; 3=*; 4=/):")
+Op= TextWindow.ReadNumber()
+
+
+
+If (Op=1) Then
+    Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1+Número2)
+EndIf
+
+   If (Op=2) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1-Número2)
+EndIf
+
+If (Op=3) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1*Número2)
+EndIf
+
+If (Op=4) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1/Número2)
+EndIf
+
+Textwindow.WriteLine("Simple Calculator...")
+Textwindow.WriteLine("Digite o operador (1=+; 2=-; 3=*; 4=/):")
+Op1= TextWindow.ReadNumber()
+If (Op1=1) Then
+    Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1+Número2)
+EndIf
+
+   If (Op1=2) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1-Número2)
+EndIf
+
+If (Op1=3) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1*Número2)
+EndIf
+
+If (Op1=4) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1/Número2)
+EndIf
+
+
+

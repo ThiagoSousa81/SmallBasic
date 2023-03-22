@@ -1,0 +1,47 @@
+'Lição 3: como configurar
+GraphicsWindow.BrushColor = "Red"
+GraphicsWindow.PenColor = "White"
+paddle = Shapes.AddRectangle(120, 12)
+Shapes.Move(paddle, 0, GraphicsWindow.Height - 12)
+
+GraphicsWindow.BrushColor = GraphicsWindow.GetColorFromRGB(0, 5, 10)
+ball = Shapes.AddEllipse(16, 16)
+GraphicsWindow.BackgroundColor = GraphicsWindow.GetRandomColor()
+ 
+'Lição 4: vamos nos mexer
+GraphicsWindow.MouseMove = WhenMouseMoves
+Sub WhenMouseMoves
+  mouseX= GraphicsWindow.MouseX
+  Shapes.Move(paddle, mouseX-60, GraphicsWindow.Height-12)
+EndSub
+ 
+'Lição 5 e 6: fazer a bola se mover
+moveX = 1
+moveY = 1
+stillPlaying = "True"
+While stillPlaying = "True"
+  x= x + moveX
+  y= y + moveY
+  Shapes.Move(ball, x, y)
+  Program.Delay(1) 'Aumente esse número para tornar a bola mais lenta
+ 
+  If(y > GraphicsWindow.Height) Then
+    GraphicsWindow.ShowMessage("Você perdeu!", "Quik Ball")
+    stillPlaying = "False"
+    GraphicsWindow.Hide()
+  EndIf
+ 
+  ' Lição 6: faça com que ele salte
+  paddleX= Shapes.GetLeft(paddle)
+  If(y >= GraphicsWindow.Height - 26 and x >= paddleX and x <= paddleX + 120) Then
+    moveY= -moveY
+  EndIf
+ 
+  If(y < 0) Then
+    moveY= -moveY
+  EndIf
+ 
+  If(x >= GraphicsWindow.Width - 16 or x < 0) Then
+    moveX= -moveX
+  EndIf
+EndWhile

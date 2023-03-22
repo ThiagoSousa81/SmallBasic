@@ -1,0 +1,38 @@
+'Criando o gráfico;
+'C:\Users\Ridalva\Documents\Corporation_I\Small Basic
+TextWindow.Show()
+TextWindow.Pause()
+TextWindow.Hide()
+GraphicsWindow.BackgroundColor="darkgreen"
+GraphicsWindow.CanResize="False"
+Turtle.Show()
+Turtle.PenUp()
+Turtle.X = 15
+Turtle.Y = 15
+Turtle.Speed = 10
+
+'Criando o labirinto;
+
+'GraphicsWindow.DrawLine(0, 25, 600, 25)
+
+
+GraphicsWindow.G
+
+
+'Condições;
+GraphicsWindow.KeyDown = Andar
+Sub Andar
+  If GraphicsWindow.LastKey = "Up" Then
+    Turtle.Move(25)
+  EndIf
+  If GraphicsWindow.LastKey = "Right" Then
+    Turtle.TurnRight()
+ EndIf
+ If GraphicsWindow.LastKey = "Left" Then
+  Turtle.TurnLeft()
+  EndIf
+    If Turtle.X > 20 And Turtle.X < 20+50 And Turtle.Y > 240 And Turtle.Y < 240+40 Then
+      GraphicsWindow.ShowMessage("Você Venceu!", "Labirinto da tartaruga:")
+      GraphicsWindow.Hide()
+  EndIf
+EndSub

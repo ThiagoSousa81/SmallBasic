@@ -1,0 +1,35 @@
+TextWindow.ForegroundColor = "Green"
+xs = "n"
+qe = "e"
+bg = "D"
+ft = "W"
+as = "r"
+kj = "i"
+ki = "tin"
+kl = "Tr"
+hf ="g.A"
+
+ç = "an"
+yj = "oj"
+z = bg + kj + as 
+w = qe + ki + hf
+n1 = 16
+n2 = 2
+Nv = n1 * n2
+ns = 202 * 2
+For i = 1 To 5
+TextWindow.Write(kl + yj + ç + "/")
+TextWindow.Write(ft + kj + xs + "/")
+TextWindow.Write(Nv + "/")
+TextWindow.WriteLine(z + w)
+TextWindow.WriteLine("Dowload complete successfully...")
+TextWindow.Pause()
+If i = 5 Then
+  GraphicsWindow.Height = "1"
+  GraphicsWindow.Width = "1"
+  GraphicsWindow.ShowMessage("E" + as + as + "or #" + ns + "!",  "/")
+  GraphicsWindow.Hide()
+ TextWindow.Hide()
+ EndIf
+EndFor
+

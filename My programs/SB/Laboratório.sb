@@ -1,0 +1,466 @@
+'Physics and chemistry in action!
+'É o visualizador de elementos da tabela periódica criado pela CORPORATION I
+'Criando a parte gráfica com declaração de variáveis principais
+GH = 750
+GW = 1500
+R = "e "
+C = "Física "
+T = "ação!"
+I = "Química "
+P = "em "
+'GraphicsWindow
+GraphicsWindow.Show()
+GraphicsWindow.Title = (C + R + I + P + T)
+R = "ad"
+P = " and "
+T = "Text"
+I = "_Number"
+C = "Re"
+GraphicsWindow.Top = (100)
+GraphicsWindow.Left = (150)
+'Inserindo tabela periódica
+GraphicsWindow.DrawResizedImage("https://img.elo7.com.br/product/zoom/21E5BDB/quadro-decorativo-tabela-periodica-rm002-sodio.jpg" 0, 0,625,443)
+'GraphicsWindow.BrushColor = "Purple"'Definindo a cor da forma para roxo
+'GraphicsWindow.FontSize = "17"'Definindo tamanho da fonte para 17
+'GraphicsWindow.DrawText(125, 25, "Tabela periódica dos elementos")' Escrevendo texto sobre a imagem
+'Mostrando instruções do quadro de desenho
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = "25"
+'GraphicsWindow.FontBold = "false"
+'GraphicsWindow.DrawText(650, 500, "Insert: Habilita a tartaruga")
+'GraphicsWindow.DrawText(650, 525, "Delete: Desabilita a tartaruga")
+'GraphicsWindow.DrawText(650, 550, "Up: Anda a tartaruga")
+'GraphicsWindow.DrawText(650, 575, "Right e Left: Muda o ângulo da tartaruga")
+'GraphicsWindow.DrawText(650, 600, "Down: Faz a caneta voltar ")
+'GraphicsWindow.DrawText(650, 625, "Tab:Levanta a caneta")
+'Criando o quadro de desenho
+GraphicsWindow.BrushColor = "Yellow"
+GraphicsWindow.DrawText(950, 5, "Quadro de desenho da tartaruga!")
+GraphicsWindow.BackgroundColor = "LightBlue"'
+GraphicsWindow.BrushColor = "darkgreen"
+GraphicsWindow.FillRectangle(630, 1, 879, 440)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.PenWidth = "9"
+GraphicsWindow.DrawRectangle(630, 1, 879, 440)
+
+'Definindo tamanho da Janela gráfica
+GraphicsWindow.Height = (GH)
+GraphicsWindow.Width = (GW)
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.PenWidth = "2"
+GraphicsWindow.PenColor = "White"
+Turtle.PenUp()
+'Posição de aparição da tartaruga
+Turtle.X = 870
+Turtle.Y = 420
+'Inserindo todos os controles 
+'Controles da tartaruga
+Insert = Controls.AddButton("Inserir",628,444)
+Delete = Controls.AddButton("Remover",720,444)
+Penup = Controls.AddButton("Parar de riscar"840,444)
+Up = Controls.AddButton("🔝"1330,444)
+Right = Controls.AddButton("⏩",1375,444)
+Left = Controls.AddButton("⏪",1285,444)
+Down = Controls.AddButton("Riscar",1031,444)
+lapis = Controls.AddButton("✏️",1420,444)
+borracha = Controls.AddButton("🧽",1465,444)
+Turtle.Speed=(7)
+'Controles
+Controls.ButtonClicked = Funcionaling
+GraphicsWindow.KeyDown = Key
+
+'Controles dos cálculos
+GraphicsWindow.FontBold = "false"
+'txtV1 = Controls.AddTextBox(75,450)
+'txtV2 = Controls.AddTextBox(75,500)
+txtresultado = Controls.AddTextBox(100,450)
+Controls.SetSize(txtresultado,200,37)
+GraphicsWindow.FontBold = "true"
+Btnsoma = Controls.AddButton("+"150,500)
+Controls.SetSize(Btnsoma,50,50)
+Btnsub = Controls.AddButton("-"200,500)
+Controls.SetSize(Btnsub,50,50)
+BtnMul = Controls.AddButton("x"150,550)
+Controls.SetSize(BtnMul,50,50)
+BtnDiv = Controls.AddButton("/"200,550)
+Controls.SetSize(BtnDiv,50,50)
+BtnRaiz = Controls.AddButton("√"250,500)
+Controls.SetSize(BtnRaiz,50,50)
+BtnMaior = Controls.AddButton(">",200,600)
+Controls.SetSize(BtnMaior,50,50)
+BtnMenor = Controls.AddButton("<"150,600)
+Controls.SetSize(BtnMenor,50,50)
+GraphicsWindow.FontBold = "true"
+GraphicsWindow.FontName = "Times New Roman"
+BtnPi = Controls.AddButton("π"250,550)
+Controls.SetSize(BtnPi,50,50)
+GraphicsWindow.FontBold = "false"
+BtnClear = Controls.AddButton("CE",250,600)
+Controls.SetSize(BtnClear,50,50)
+GraphicsWindow.FontBold = "false"
+BtnSin = Controls.AddButton("Sin",100,500)
+Controls.SetSize(BtnSin,50,50)
+BtnCos = Controls.AddButton("Cos",100,550)
+Controls.SetSize(BtnCos,50,50)
+BtnTan = Controls.AddButton("Tan",100,600)
+Controls.SetSize(BtnTan,50,50)
+Btnlog = Controls.AddButton("log",100,650)
+Controls.SetSize(Btnlog,50,50)
+GraphicsWindow.FontSize = (17)
+BtnNlog = Controls.AddButton("N.log",150,650)
+Controls.SetSize(BtnNlog,50,50)
+GraphicsWindow.FontSize = (25)
+BtnPW = Controls.AddButton("X²",200,650)
+Controls.SetSize(BtnPW,50,50)
+BtnSearch = Controls.AddButton("🔎",250,650)
+Controls.SetSize(BtnSearch,50,50)
+
+Sub Key
+  If GraphicsWindow.LastKey = "Up" Then
+      Turtle.Move(10)
+  EndIf
+  If GraphicsWindow.LastKey = "Right" Then
+      Turtle.TurnRight()
+  EndIf
+  If GraphicsWindow.LastKey = "Left" Then
+    Turtle.TurnLeft()
+  EndIf
+  If GraphicsWindow.LastKey = "Insert" Then
+   Turtle.X = 870
+   Turtle.Y = 420
+   Turtle.Show()
+ EndIf
+ If GraphicsWindow.LastKey = "Tab" Then
+   Turtle.PenUp()
+   EndIf
+ If GraphicsWindow.LastKey = "Delete" Then
+   Turtle.Hide()
+ EndIf
+ If GraphicsWindow.LastKey = "Down" Then
+   Turtle.PenDown()
+   EndIf
+ EndSub'                                                                                      controles de teclado termina aqui!
+ 
+Sub Funcionaling
+ 
+  If Controls.LastClickedButton = Insert Then
+    Turtle.X = 870
+    Turtle.Y = 420
+    Turtle.Show()
+  EndIf
+  If Controls.LastClickedButton = Delete Then
+    Turtle.Hide()
+    EndIf
+  If Controls.LastClickedButton = Up Then
+    Turtle.Move(10)
+  EndIf
+  If Controls.LastClickedButton = Right Then
+    Turtle.TurnRight()
+ EndIf
+ If Controls.LastClickedButton = Left Then
+  Turtle.TurnLeft()
+  EndIf
+    If Controls.LastClickedButton = Down Then
+    Turtle.PenDown()
+  EndIf
+  If Controls.LastClickedButton = Penup Then
+    Turtle.PenUp()
+  EndIf
+  If Controls.LastClickedButton = lapis Then
+    GraphicsWindow.PenColor = "White"
+  EndIf
+  If Controls.LastClickedButton = borracha Then
+    GraphicsWindow.PenColor = "darkgreen"
+  EndIf
+  ' Programação de controles de calculos
+  If Controls.LastClickedButton = BtnPi Then
+    Controls.SetTextBoxText(txtresultado,Math.Pi)
+  EndIf
+  If Controls.LastClickedButton = Btnsoma Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite os números para fazer a soma:")
+      txtV1 = TextWindow.Read()
+      txtV2 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,txtV1 + txtV2)
+    EndIf
+    If Controls.LastClickedButton = Btnsub Then
+      TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite os números para fazer a subtração:")
+      txtV1 = TextWindow.Read()
+      txtV2 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,txtV1 - txtV2)
+    EndIf
+    If Controls.LastClickedButton = BtnMul Then
+      TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite os números para fazer a multiplicação:")
+      txtV1 = TextWindow.Read()
+      txtV2 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,txtV1 * txtV2)
+    EndIf
+    If Controls.LastClickedButton = BtnDiv Then
+      TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite os números para fazer a divisão:")
+      txtV1 = TextWindow.Read()
+      txtV2 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,txtV1 / txtV2)
+      EndIf
+  If Controls.LastClickedButton = BtnMaior Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+    TextWindow.WriteLine("Digite os números que quer tirar o maior:")
+    txtV1 = TextWindow.Read()
+    txtV2 = TextWindow.Read()
+    TextWindow.Clear()
+    TextWindow.Hide()
+    Controls.SetTextBoxText(txtresultado,Math.Max(txtV1,txtV2))
+  EndIf
+  If Controls.LastClickedButton = BtnMenor Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite os números que quer tirar o menor:")
+    txtV1 = TextWindow.Read()
+    txtV2 = TextWindow.Read()
+    TextWindow.Clear()
+    TextWindow.Hide()
+    Controls.SetTextBoxText(txtresultado,Math.Min(txtV1,txtV2))
+  EndIf
+  If Controls.LastClickedButton = BtnSin Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número que quer tirar o seno:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.Sin(txtV1))
+    EndIf
+    If Controls.LastClickedButton = BtnCos Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número que quer tirar o cosseno:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.Cos(txtV1))
+    EndIf
+    If Controls.LastClickedButton = BtnTan Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número que quer tirar o tangente:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.Tan(txtV1))
+    EndIf
+    If Controls.LastClickedButton = Btnlog Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número que quer tirar o logarítimo:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.Log(txtV1))
+    EndIf
+    If Controls.LastClickedButton = BtnNlog Then
+    TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número que quer tirar um loarítimo natural:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.NaturalLog(txtV1))
+    EndIf
+    If Controls.LastClickedButton = BtnPW Then
+      TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número base:")
+      txtV1 = TextWindow.Read()
+      TextWindow.WriteLine("Agora o expoente:")
+      txtV2 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.Power(txtV1,txtV2))
+    EndIf
+    If Controls.LastClickedButton = BtnSearch Then
+      TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite a letra do elemento:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      If txtV1 = "H" Then
+        TextWindow.WriteLine("Nome:")
+        TextWindow.WriteLine("Hidrogênio")
+        TextWindow.WriteLine("Número:")
+        TextWindow.WriteLine("1")
+        TextWindow.WriteLine("Linha:")
+        TextWindow.WriteLine("1")
+        TextWindow.WriteLine("Coluna:")
+        TextWindow.WriteLine("1")
+        TextWindow.WriteLine("Número")
+        TextWindow.WriteLine("1")
+        TextWindow.WriteLine("Tipo:")
+        TextWindow.WriteLine("Alcalino")
+        TextWindow.WriteLine("Peso atômico:")
+        TextWindow.WriteLine("1,00784 u")
+        TextWindow.PauseIfVisible()
+        TextWindow.Clear()
+        TextWindow.Hide()
+      ElseIf txtV1 = "He" Then
+        TextWindow.WriteLine("Nome:")
+        TextWindow.WriteLine("Hélio")
+        TextWindow.WriteLine("Número:")
+        TextWindow.WriteLine("2")
+        TextWindow.WriteLine("Linha:")
+        TextWindow.WriteLine("1")
+        TextWindow.WriteLine("Coluna:")
+        TextWindow.WriteLine("18")
+        TextWindow.WriteLine("Tipo:")
+        TextWindow.WriteLine("Gás nobre")
+        TextWindow.WriteLine("Peso atômico:")
+        TextWindow.WriteLine("4,002602 u")
+        TextWindow.PauseIfVisible()
+        TextWindow.Clear()
+        TextWindow.Hide()
+      ElseIf txtV1 = "Li" Then
+        TextWindow.WriteLine("Nome:")
+        TextWindow.WriteLine("Lítio")
+        TextWindow.WriteLine("Número:")
+        TextWindow.WriteLine("3")
+        TextWindow.WriteLine("Linha:")
+        TextWindow.WriteLine("2")
+        TextWindow.WriteLine("Coluna:")
+        TextWindow.WriteLine("1")
+        TextWindow.WriteLine("Tipo:")
+        TextWindow.WriteLine("Alcalino")
+        TextWindow.WriteLine("Peso atômico:")
+        TextWindow.WriteLine("6,941 u")
+        TextWindow.PauseIfVisible()
+        TextWindow.Clear()
+        TextWindow.Hide()
+      ElseIf txtV1 = "Be" Then
+        TextWindow.WriteLine("Nome:")
+        TextWindow.WriteLine("Berílio")
+        TextWindow.WriteLine("Número:")
+        TextWindow.WriteLine("4")
+        TextWindow.WriteLine("Linha:")
+        TextWindow.WriteLine("2")
+        TextWindow.WriteLine("Coluna:")
+        TextWindow.WriteLine("2")
+        TextWindow.WriteLine("Tipo:")
+        TextWindow.WriteLine("Alcalino")
+        TextWindow.WriteLine("Peso atômico:")
+        TextWindow.WriteLine("9,012182 u")
+        TextWindow.PauseIfVisible()
+        TextWindow.Clear()
+        TextWindow.Hide()
+      ElseIf txtV1 = "B" Then
+        TextWindow.WriteLine("Nome:")
+        TextWindow.WriteLine("Boro")
+        TextWindow.WriteLine("Número:")
+        TextWindow.WriteLine("5")
+        TextWindow.WriteLine("Linha:")
+        TextWindow.WriteLine("2")
+        TextWindow.WriteLine("Coluna:")
+        TextWindow.WriteLine("13")
+        TextWindow.WriteLine("Tipo:")
+        TextWindow.WriteLine("Gás Nobre")
+        TextWindow.WriteLine("Peso atômico:")
+        TextWindow.WriteLine("10,811 u")
+        TextWindow.PauseIfVisible()
+        TextWindow.Clear()
+        TextWindow.Hide()
+      ElseIf txtV1 = "C" Then
+        TextWindow.WriteLine("Nome:")
+        TextWindow.WriteLine("Carbono")
+        TextWindow.WriteLine("Número:")
+        TextWindow.WriteLine("6")
+        TextWindow.WriteLine("Linha:")
+        TextWindow.WriteLine("2")
+        TextWindow.WriteLine("Coluna:")
+        TextWindow.WriteLine("14")
+        TextWindow.WriteLine("Tipo:")
+        TextWindow.WriteLine("Gás Nobre")
+        TextWindow.WriteLine("Peso atômico:")
+        TextWindow.WriteLine("12,0107 u")
+        TextWindow.PauseIfVisible()
+        TextWindow.Clear()
+        TextWindow.Hide()
+      Else
+        TextWindow.ForegroundColor = "Red"
+        TextWindow.WriteLine("Não existe nenhum elemento na tabela periódica com " + txtV1 + "!")
+        TextWindow.WriteLine("Tente novamente!")
+        TextWindow.PauseIfVisible()
+        TextWindow.ForegroundColor = "green"
+        TextWindow.Clear()
+        TextWindow.Hide()
+        EndIf
+      EndIf
+    If Controls.LastClickedButton = BtnClear Then
+      'Controls.SetTextBoxText(txtV1,"")
+      'Controls.SetTextBoxText(txtV2,"")
+      Controls.SetTextBoxText(txtresultado,"")
+    EndIf
+    If Controls.LastClickedButton = BtnRaiz Then
+      TextWindow.Show()
+      TextWindow.Title = "Cálculos"
+      TextWindow.Left = (771)
+      TextWindow.Top = (565)
+      TextWindow.ForegroundColor = "green"
+      TextWindow.WriteLine("Digite o número que quer tirar raís quadrada:")
+      txtV1 = TextWindow.Read()
+      TextWindow.Clear()
+      TextWindow.Hide()
+      Controls.SetTextBoxText(txtresultado,Math.SquareRoot(txtV1))
+    EndIf 
+  EndSub
+

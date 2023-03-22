@@ -1,0 +1,252 @@
+'Calculadora 
+'Preparando o gráfico...
+
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Width = 550
+GraphicsWindow.Height = 550
+GraphicsWindow.Title = "Calculadora (≠)"
+GraphicsWindow.BrushColor = "Beige"
+GraphicsWindow.PenWidth = 5
+GraphicsWindow.PenColor = "Yellow"
+GraphicsWindow.DrawRectangle(0, 0, 550, 550)
+GraphicsWindow.BackgroundColor = "darkblue"
+GraphicsWindow.DrawRectangle(25, 25, 500, 115)
+GraphicsWindow.PenColor = "Black"
+GraphicsWindow.FillRectangle (25, 25, 500, 115)
+GraphicsWindow.PenWidth = 1
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = "75"
+R1 = Controls.AddTextBox(25, 25)
+Controls.SetSize(R1, 500, 115)
+
+
+'Desenhando os botões...
+
+'Botão número 9 
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(325, 150, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(375, 143 "9")
+GraphicsWindow.DrawRectangle(325, 150, 125, 75)
+B9 = Controls.AddButton("9", 325, 150)
+Controls.SetSize(B9, 125, 75)
+
+'Botão número 8
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(175, 150, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(215, 143, "8")
+GraphicsWindow.DrawRectangle(175, 150, 125, 75)
+B8 = Controls.AddButton("8", 175, 150)
+Controls.SetSize(B8, 125, 75)
+
+'Botão número 7
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(25, 150, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(75, 143, "7")
+GraphicsWindow.DrawRectangle(25, 150, 125, 75)
+B7 = Controls.AddButton("7", 25, 150)
+Controls.SetSize(B7, 125, 75)
+
+'Botão número 4
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(25, 250, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(75, 243, "4")
+GraphicsWindow.DrawRectangle(25, 250, 125, 75)
+B4 = Controls.AddButton("4", 25, 250)
+Controls.SetSize(B4, 125, 75)
+
+'Botão número 5
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(175, 250, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(215, 243, "5")
+GraphicsWindow.DrawRectangle(175, 250, 125, 75)
+B5 = Controls.AddButton("5", 175, 250)
+Controls.SetSize(B5, 125, 75)
+
+'Botão número 6
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(325, 250, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(375, 243, "6")
+GraphicsWindow.DrawRectangle(325, 250, 125, 75)
+B6 = Controls.AddButton("6", 325, 250)
+Controls.SetSize(B6, 125, 75)
+
+'Botão número 1
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(25, 350, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(75, 343 "1")
+GraphicsWindow.DrawRectangle(25, 350, 125, 75)
+B1 = Controls.AddButton("1", 25, 350)
+Controls.SetSize(B1, 125, 75)
+
+'Botão número 2
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(175, 350, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(215, 343 "2")
+GraphicsWindow.DrawRectangle(175, 350, 125, 75)
+B2 = Controls.AddButton("  2  ", 175, 350)
+Controls.SetSize(B2, 125, 75)
+
+'Botão número 3
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(325, 350, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(375, 343 "3")
+GraphicsWindow.DrawRectangle(325, 350, 125, 75)
+B3 = Controls.AddButton("3", 325, 350)
+Controls.SetSize(B3, 125, 75)
+
+'Botão número 0
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 60
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(175, 450, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(215, 443 "0")
+GraphicsWindow.DrawRectangle(175, 450, 125, 75)
+B0 = Controls.AddButton("0", 175, 450)
+Controls.SetSize(B0, 125, 75)
+
+'Botão da vírgula
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 72
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(25, 450, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(75, 435 ",")
+GraphicsWindow.DrawRectangle(25, 450, 125, 75)
+BSV = Controls.AddButton("'", 25, 450)
+Controls.SetSize(BSV, 125, 75)
+
+'Sinal =
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 72
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(325, 450, 125, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(360, 440 "=")
+GraphicsWindow.DrawRectangle(325, 450, 125, 75)
+BSI = Controls.AddButton("  = ", 325, 450,)
+Controls.SetSize(BSI, 125, 75)
+
+'Sinal  /
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 58
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(475, 150, 50, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(485, 150, "/")
+GraphicsWindow.DrawRectangle(475, 150, 50, 75)
+BSD = Controls.AddButton("/", 475, 150)
+Controls.SetSize(BSD, 50, 75)
+
+'Simal X
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 58
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(475, 250, 50, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(480, 250 "X")
+GraphicsWindow.DrawRectangle(475, 250, 50, 75)
+BSM = Controls.AddButton("X ", 475, 250)
+Controls.SetSize(BSM, 50, 75)
+
+'Sinal -
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 58
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(475, 350, 50, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(490, 350, "-")
+GraphicsWindow.DrawRectangle(475, 350, 50, 75)
+BSM2 = Controls.AddButton("- ", 475, 350)
+Controls.SetSize(BSM2, 50, 75)
+
+'Sinal + 
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontSize = 55
+GraphicsWindow.BrushColor = "lightblue"
+GraphicsWindow.FillRectangle(475, 450, 50, 75)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText (480, 450, "+")
+GraphicsWindow.DrawRectangle(475, 450, 50, 75)
+BSM3 = Controls.AddButton("+", 475, 450)
+Controls.SetSize(BSM3, 50, 75)
+
+'                                                            { [ ( Programação ) ] }
+Controls.ButtonClicked = Digitacao
+Sub Digitacao
+  If Controls.LastClickedButton = B9 Then
+    Controls.SetTextBoxText(R1, "9")
+  EndIf
+  If Controls.LastClickedButton = B8 Then
+    Controls.SetTextBoxText(R1, "8")
+  EndIf
+  If Controls.LastClickedButton = B7 Then
+    Controls.SetTextBoxText(R1, "7")
+  EndIf
+  If Controls.LastClickedButton = B6 Then
+    Controls.SetTextBoxText(R1, "6")
+  EndIf
+  If Controls.LastClickedButton = B5 Then
+    Controls.SetTextBoxText(R1, "5")
+  EndIf
+  If Controls.LastClickedButton = B4 Then
+    Controls.SetTextBoxText(R1, "4")
+  EndIf
+  If Controls.LastClickedButton = B3 Then
+    Controls.SetTextBoxText(R1, "3")
+  EndIf
+  If Controls.LastClickedButton = B2 Then
+    Controls.SetTextBoxText(R1, "2")
+  EndIf
+  If Controls.LastClickedButton = B1 Then
+    Controls.SetTextBoxText(R1, "1")
+  EndIf
+  If Controls.LastClickedButton = B0 Then
+    Controls.SetTextBoxText(R1, "0")
+  EndIf
+  If Controls.LastClickedButton = BSV Then
+    Controls.SetTextBoxText(R1, ",")
+  EndIf
+  If Controls.LastClickedButton = BSD Then
+    Controls.SetTextBoxText(R1, "/")
+  EndIf
+  If Controls.LastClickedButton = BSI Then
+    Controls.SetTextBoxText(R1, "=")
+  EndIf
+  If Controls.LastClickedButton = BSM Then
+    Controls.SetTextBoxText(R1, "X")
+  EndIf
+  If Controls.LastClickedButton = BSM2 Then
+    Controls.SetTextBoxText(R1, "-")
+  EndIf
+  If Controls.LastClickedButton = BSM3 Then
+    Controls.SetTextBoxText(R1, "+")
+  EndIf
+EndSub

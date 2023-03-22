@@ -1,0 +1,253 @@
+'    O novo windows: 2020! 
+'Ele publicado é (SMQ425)
+Mouse.HideCursor()
+GraphicsWindow.Hide()
+TextWindow.ForegroundColor = "Green"
+TextWindow.WriteLine("Carregando programação do S.O...")
+TextWindow.WriteLine("")
+Program.Delay(2000)
+TextWindow.WriteLine("GH = 1000")
+Program.Delay(250)
+Textwindow.WriteLine("GW = 1920")
+Program.Delay(250)
+TextWindow.WriteLine("/Show()")
+Program.Delay(250)
+TextWindow.WriteLine("/Top = (0)")
+Program.Delay(250)
+TextWindow.WriteLine("/Left = (0)")
+Program.Delay(250)
+TextWindow.WriteLine("/CanResize = False")
+Program.Delay(250)
+TextWindow.WriteLine("/Title = (Windows 2020)")
+Program.Delay(250)
+TextWindow.WriteLine("/Height = (GH)")
+Program.Delay(250)
+TextWindow.WriteLine("/Width = (GW)")
+Program.Delay(250)
+TextWindow.WriteLine("/BackgroundColor = Black")
+Program.Delay(250)
+TextWindow.WriteLine("/PenColor = Purple")
+Program.Delay(250)
+TextWindow.WriteLine("/BrushColor = White")
+Program.Delay(250)
+TextWindow.WriteLine("/FontBold = True")
+Program.Delay(250)
+TextWindow.WriteLine("/FontSize = 25")
+Program.Delay(250)
+TextWindow.WriteLine("/DrawText(600, 750, Starting Windows)")
+Program.Delay(250)
+TextWindow.WriteLine("/BrushColor = Red")
+Program.Delay(250)
+TextWindow.WriteLine("/FillRectangle(613, 350, 125, 125)")
+Program.Delay(250)
+TextWindow.WriteLine("/BrushColor = Green")
+Program.Delay(250)
+TextWindow.WriteLine("/FillRectangle(737, 350, 125, 125)")
+Program.Delay(250)
+TextWindow.WriteLine("/BrushColor = Yellow")
+Program.Delay(250)
+TextWindow.WriteLine("/FillRectangle(613, 475, 125, 125)")
+Program.Delay(250)
+TextWindow.WriteLine("/BrushColor = Blue")
+Program.Delay(250)
+TextWindow.WriteLine("/FillRectangle(737, 475, 125, 125)")
+Program.Delay(250)
+TextWindow.WriteLine("/DrawResizedImage(https://digiworthy.com/wp-content/uploads/2018/12/windows-10-adjust-colors.jpg) 0 0 GW GH - 100)")
+Program.Delay(250)
+
+'Iniciando
+TextWindow.Clear()
+TextWindow.Write("Você está pronto para ver o novo sistema operacional")
+TextWindow.WriteLine(" criado por Corporation I?")
+TextWindow.Pause()
+TextWindow.Clear()
+TextWindow.Hide()
+'Variáveis principais:
+GH = 1000
+GW = 1920
+' Inicializaçao gráfica
+GraphicsWindow.Show()
+GraphicsWindow.Top = (5)
+GraphicsWindow.Left = (0)
+GraphicsWindow.CanResize = "False"
+GraphicsWindow.Title = ("Windows 2020")
+GraphicsWindow.Height = (GH)
+GraphicsWindow.Width = (GW)
+GraphicsWindow.BackgroundColor="Black"
+GraphicsWindow.PenColor = "Purple"
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FontBold = "True"
+GraphicsWindow.FontSize = 25
+GraphicsWindow.DrawText(600, 750, "Iniciando o Windows")
+'  Desenho da tartaruga
+'Tamanho das linhas 450
+Turtle.PenUp()
+Turtle.Speed = 19
+Turtle.MoveTo(610, 750)
+Turtle.MoveTo(610, 600)
+Turtle.PenDown()
+Turtle.Move(250)
+Turtle.TurnRight()
+Turtle.Move(250)
+Turtle.TurnRight()
+Turtle.Move(250)
+Turtle.TurnRight()
+Turtle.Move(250)
+Turtle.PenUp()
+Turtle.TurnRight()
+Turtle.Move(125)
+Turtle.TurnRight()
+Turtle.PenDown()
+Turtle.Move(250)
+Turtle.PenUp()
+Turtle.TurnRight()
+Turtle.Move(125)
+Turtle.TurnRight()
+Turtle.Move(125)
+Turtle.PenDown()
+Turtle.TurnRight()
+Turtle.Move(250)
+GraphicsWindow.BrushColor = "Red"
+GraphicsWindow.FillRectangle(613, 350, 125, 125)
+GraphicsWindow.BrushColor = "Green"
+GraphicsWindow.FillRectangle(737, 350, 125, 125)
+GraphicsWindow.BrushColor = "Yellow"
+GraphicsWindow.FillRectangle(613, 475, 125, 125)
+GraphicsWindow.BrushColor = "Blue"
+GraphicsWindow.FillRectangle(737, 475, 125, 125)
+Program.Delay(1000)
+Turtle.Hide()
+'Gráfico de senha
+Program.Delay(1000)
+GraphicsWindow.Clear()
+GraphicsWindow.BackgroundColor = GraphicsWindow.GetColorFromRGB(100,0,100)
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.DrawText(700,450,"Aguarde")
+Program.Delay(1000)
+GraphicsWindow.Clear()
+Mouse.ShowCursor()
+Rest:
+GraphicsWindow.DrawText(700,450,"Sistem") '
+GraphicsWindow.PenColor = "Black"
+GraphicsWindow.BrushColor = "White"
+GraphicsWindow.FillRectangle(575,500,300,27)
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.DrawText(575,500,"Senha:")
+GraphicsWindow.DrawRectangle(575,500,300,27)
+GraphicsWindow.FontBold = "False"
+GraphicsWindow.FontSize = "25"
+PS = Controls.AddTextBox(575,500)
+GraphicsWindow.DrawText(575,500,"Senha:")
+Controls.SetSize(PS,300,30)
+btnps = Controls.AddButton("Entrar" 900, 490)
+Controls.ButtonClicked = buttons
+
+Sub buttons
+
+If Controls.LastClickedButton = btnps Then
+  If (PS <> "010001010") Then
+    GraphicsWindow.Clear()
+    Goto Rest
+    Else
+  Sound.PlayClick()
+  'Aumentando variáveis principais:
+GH = 1000
+GW = 1920
+  PS = 0
+  btnps = 0  
+  GraphicsWindow.Clear()
+  Mouse.ShowCursor()
+  'Simbolo da microsoft
+   GraphicsWindow.BrushColor = "Red"
+   GraphicsWindow.FillRectangle(0, GH - 100, 50, 50)
+   GraphicsWindow.BrushColor="green"
+   GraphicsWindow.FillRectangle(50, GH - 100, 50, 50)
+   GraphicsWindow.BrushColor="Blue"
+   GraphicsWindow.FillRectangle(0, GH - 50, 50, 50)
+   GraphicsWindow.BrushColor="yellow"
+   GraphicsWindow.FillRectangle(50, GH - 50, 50, 50)
+   GraphicsWindow.BrushColor="Black"
+   GraphicsWindow.DrawLine(0, GH - 100, GW, GH - 100)
+   'GraphicsWindow.DrawLine(100,GH,100,GH - 100)
+    'Botão do símbolo da microsoft 
+  GraphicsWindow.FontSize = "15"
+  MS = Controls.AddButton("Menu", 25, GH - 100)
+  Controls.SetSize(MS, 50, 30)
+  GraphicsWindow.FontSize = "27"
+
+GraphicsWindow.DrawLine(100,750,100,800)
+GraphicsWindow.BrushColor = "Gray"
+'GraphicsWindow.FillRectangle(100,750,1400,100)
+GraphicsWindow.Height = (GH)
+GraphicsWindow.Width = (GW)
+'Papel de parede:
+GraphicsWindow.DrawResizedImage("https://digiworthy.com/wp-content/uploads/2018/12/windows-10-adjust-colors.jpg", 0, 0, GW, GH - 100)
+'Tempo
+H = Clock.Hour
+M = Clock.Minute
+GraphicsWindow.BrushColor = "Black"
+GraphicsWindow.FontBold = "False"
+GraphicsWindow.FontSize = "20"
+GraphicsWindow.DrawText(1825, 925, H + ":" + M )
+D = Clock.Day
+M = Clock.Month
+Y = Clock.Year
+GraphicsWindow.DrawText(1800, 950, D + "/" + M + "/" + Y)
+'Adicionando botões da batra de tarefas:
+
+  
+  Btn1 = Controls.AddButton("",100,GH - 100)
+  Controls.SetSize(Btn1,100,100)
+  Btn2 = Controls.AddButton("",200,GH - 100)
+  Controls.SetSize(Btn2,100,100)
+  
+  EndIf
+EndIf
+'If Controls.LastClickedButton = MS Then
+ ' Sound.PlayClick()
+ 
+'EndIf
+If Controls.LastClickedButton = Btn1 Then
+  Sound.PlayClick()
+  'Simple calculator:
+Restart:
+Textwindow.WriteLine("Simple Calculator...")
+Textwindow.WriteLine("Digite o operador (1=+; 2=-; 3=*; 4=/):")
+Op= TextWindow.ReadNumber()
+TextWindow.Clear()
+
+If (Op=1) Then
+    Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1+Número2)
+ElseIf (Op=2) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1-Número2)
+ElseIf (Op=3) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1*Número2)
+ElseIf (Op=4) Then
+Textwindow.WriteLine("Digite o primeiro número:")
+Número1 =TextWindow.Read()
+Textwindow.WriteLine("Digite o segundo número:")
+Número2 =TextWindow.Read()
+TextWindow.WriteLine("O resultado é:")
+TextWindow.WriteLine(Número1/Número2)
+EndIf
+Goto Restart
+  EndIf
+
+EndSub
+
+

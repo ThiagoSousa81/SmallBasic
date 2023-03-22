@@ -1,0 +1,15 @@
+TextWindow.BackgroundColor="green"
+TextWindow.ForegroundColor="Black"
+Turtle.Show()
+TextWindow.writeline("Qual o seu nome?")
+Nome=TextWindow.Read() 
+If Clock.Hour > 18 Then 
+    TextWindow.WriteLine("Bom dia "+ Nome)
+Else
+    TextWindow.writeLine("Boa noite "+ Nome)
+    EndIf
+TextWindow.WriteLine("Digite a doecodificação")
+Decodificator=TextWindow.Read()
+    TextWindow.WriteLine("Error #404")
+    
+        

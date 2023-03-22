@@ -1,0 +1,540 @@
+'                                                     Small Basic Tetris  
+GraphicsWindow.KeyDown = HandleKey
+GraphicsWindow.BackgroundColor = GraphicsWindow.GetColorFromRGB( 253, 252, 251 )
+
+While "True"
+  BOXES = 4      'número de caixas por peça
+  BWIDTH = 25    ' largura da caixa em pixels
+  XOFFSET = 40   ' Deslocamento da tela X em pixels de onde o painel começa
+  YOFFSET = 40   ' Deslocamento da tela Y em pixels de onde o painel começa
+  CWIDTH = 10    ' Largura da lona, em número de caixas
+  CHEIGHT = 20   ' Altura da lona, em número de caixas.
+  STARTDELAY = 800
+  ENDDELAY = 175
+  PREVIEW_xpos = 13
+  PREVIEW_ypos = 2
+  
+  GraphicsWindow.Clear()
+  GraphicsWindow.Title = "Small Basic Tetris"
+  GraphicsWindow.Height = 580
+  GraphicsWindow.Width = 700
+  GraphicsWindow.Show()
+
+  SetupTemplates()
+  SetupCanvas()
+  MainLoop()
+  
+  GraphicsWindow.ShowMessage( "Game Over", "Small Basic Tetris" )
+EndWhile
+
+Sub MainLoop
+  template = Text.Append("template", Math.GetRandomNumber(7))
+
+  CreatePiece() ' em: modelo ret: h
+  nextPiece = h
+
+  end = 0
+  sessionDelay = STARTDELAY
+  While end = 0
+    If sessionDelay > ENDDELAY Then
+      sessionDelay = sessionDelay - 1
+    EndIf
+    
+    delay = sessionDelay
+    thisPiece = nextPiece
+    template = Text.Append("template", Math.GetRandomNumber(7))
+
+    CreatePiece() ' em: modelo ret: h
+    nextPiece = h
+    DrawPreviewPiece()
+    
+    h = thisPiece    
+    
+    ypos = 0
+    done = 0
+    xpos = 3 ' sempre solte da coluna 3
+    CheckStop() 'in: ypos, xpos, h ret: concluído
+    If done = 1 Then
+      ypos = ypos - 1
+      MovePiece()  'em: ypos, xpos, h
+      end = 1
+    EndIf
+    
+    yposdelta = 0
+    While done = 0 Or yposdelta > 0
+      MovePiece()  'em: ypos, xpos, h
+      
+      ' Atraso, mas quebre se o atraso for definido como 0 se a peça cair
+      delayIndex = delay      
+      While delayIndex > 0 And delay > 0
+        Program.Delay(10)
+        delayIndex = delayIndex - 10
+      EndWhile  
+
+      If yposdelta > 0 Then
+        yposdelta = yposdelta - 1  'usado para criar rotação livre, quando a peça é girada
+      Else
+        ypos = ypos + 1            'caso contrário, mova a peça para baixo.
+      EndIf
+      
+      ' Verifique se a peça deve parar.
+      CheckStop() ' in: ypos, xpos, h ret: concluído           
+    EndWhile
+  EndWhile
+EndSub
+
+Sub HandleKey
+  ' Pare o jogo
+  If GraphicsWindow.LastKey = "Escape" Then
+    Program.End()
+  EndIf
+
+  ' Mover a peça para a esquerda
+  If GraphicsWindow.LastKey = "Left" Then
+    moveDirection = -1
+    ValidateMove()  ' in: ypos, xpos, h, moveDirection ret: invalidMove = 1 ou -1 ou 2 se a movimentação for inválida, caso contrário, 0
+    If invalidMove = 0 Then
+      xpos = xpos + moveDirection
+    EndIf
+    MovePiece()  'em: ypos, xpos, h
+  EndIf
+  
+  ' Mover a peça para a direita
+  If GraphicsWindow.LastKey = "Right" Then
+    moveDirection = 1
+    ValidateMove()  ' in: ypos, xpos, h, moveDirection ret: invalidMove = 1 ou -1 ou 2 se a movimentação for inválida, caso contrário, 0
+    If invalidMove = 0 Then
+      xpos = xpos + moveDirection
+    EndIf
+    MovePiece()  'em: ypos, xpos, h
+  EndIf
+  
+  ' Mover a peça para baixo
+  If GraphicsWindow.LastKey = "Down" or GraphicsWindow.LastKey = "Space" Then
+    delay = 0
+  EndIf
+  
+  ' Rodar peça
+  If GraphicsWindow.LastKey = "Up" Then
+    basetemplate = Array.GetValue(h, -1)  ' Array.GetValue (h, -1) = o nome do modelo
+    template = "temptemplate"
+    rotation = "CW"
+    CopyPiece()  'no modelo básico, modelo, rotação
+
+    Array.SetValue(h, -1, template) 'Array.GetValue (h, -1) = o nome do modelo
+    moveDirection = 0
+    ValidateMove()  ' in: ypos, xpos, h, moveDirection ret: invalidMove = 1 ou -1 ou 2 se a movimentação for inválida, caso contrário, 0
+    
+    ' Veja se ele pode ser movido para que ele gire.
+    xposbk = xpos
+    yposdelta = 0
+    While yposdelta = 0 And Math.Abs(xposbk - xpos) < 3 ' mova até 3 vezes apenas 'se a rotação funcionar, copie a temperatura para "rotacionar modelo" e use-a de agora em diante
+      If invalidMove = 0 Then
+        basetemplate = template
+        template = "rotatedtemplate"
+        Array.SetValue(h, -1, template) ' Array.GetValue (h, -1) = o nome do modelo
+        rotation = "COPY"
+        CopyPiece()  'no modelo básico, modelo, rotação
+        yposdelta = 1 ' Não desça se girarmos
+        MovePiece()  'em: ypos, xpos, h
+      ElseIf invalidMove = 2 Then
+        ' Não apóie a peça deslocada ao acertar outra peça à direita ou à esquerda.
+        xpos = 99 'sair do loop
+      Else
+        ' se a peça girada não puder ser colocada, mova-a para a esquerda ou direita e tente novamente.
+        xpos = xpos - invalidMove
+        ValidateMove()  ' em: ypos, xpos, h, moveDirection ret: invalidMove = 1 ou -1 ou 2 se a movimentação for inválida, caso contrário, 0
+      EndIf
+    EndWhile
+        
+    If invalidMove <> 0 Then
+      xpos = xposbk
+      Array.SetValue(h, -1, basetemplate) ' Array.GetValue (h, -1) = o nome do modelo
+      template = ""
+    EndIf      
+  EndIf
+EndSub
+
+
+Sub DrawPreviewPiece
+  xpos = PREVIEW_xpos
+  ypos = PREVIEW_ypos
+  h = nextPiece
+
+  XOFFSETBK = XOFFSET
+  YOFFSETBK = YOFFSET
+  XOFFSET = XOFFSET + Array.GetValue(Array.GetValue(h, -1), "pviewx") ' Array.GetValue(h, -1) = o nome do modelo
+  YOFFSET = YOFFSET + Array.GetValue(Array.GetValue(h, -1), "pviewy") ' Array.GetValue(h, -1) = o nome do modelo
+  MovePiece()  'in: ypos, xpos, h
+
+  XOFFSET = XOFFSETBK
+  YOFFSET = YOFFSETBK
+EndSub
+
+' cria modelo que é um modelo de base girado
+Sub CopyPiece  'no modelo básico, modelo, rotação 
+  L = Array.GetValue(basetemplate, "dim")
+  
+  If rotation = "CW" Then
+    For i = 0 to BOXES - 1 '      x' = y     y' = L - 1 - x
+      v = Array.GetValue(basetemplate, i)
+
+      'x = Math.Floor(v/10)
+      'y = Math.Remainder(v, 10)
+      
+      ' novo x e y
+      x = (Math.Remainder(v, 10))
+      y = (L - 1 - Math.Floor(v/10))
+      Array.SetValue(template, i, x * 10 + y)
+    EndFor
+  ' Atualmente, o Count-Cockwise não é usado
+  ElseIf rotation = "CCW" Then
+    For i = 0 to BOXES - 1 '      x' = L - 1 - y     y' = x
+      v = Array.GetValue(basetemplate, i)
+      'x = Math.Floor(v/10)
+      'y = Math.Remainder(v, 10)
+
+      ' novo x e y
+      x = (L - 1 - Math.Remainder(v, 10))
+      y = Math.Floor(v/10)
+      Array.SetValue(template, i, x * 10 + y)
+    EndFor
+  ElseIf rotation = "COPY" Then
+    For i = 0 to BOXES - 1
+      Array.SetValue(template, i, Array.GetValue(basetemplate, i))
+    EndFor
+  Else
+    GraphicsWindow.ShowMessage("Parâmetro inválido", "Erro")
+    Program.End()
+  EndIf
+  
+  ' Copie as propriedades restantes do modelo básico para o modelo.
+  Array.SetValue(template, "color", Array.GetValue(basetemplate, "color"))
+  Array.SetValue(template, "dim", Array.GetValue(basetemplate, "dim"))
+  Array.SetValue(template, "pviewx", Array.GetValue(basetemplate, "pviewx"))
+  Array.SetValue(template, "pviewy", Array.GetValue(basetemplate, "pviewy"))
+EndSub
+    
+Sub CreatePiece ' em: modelo ret: h
+   'Crie um novo identificador, representando um arrayName, que representará a peça
+  hcount = hcount + 1
+  h = Text.Append("piece", hcount)
+  
+  Array.SetValue(h, -1, template) ' Array.GetValue (h, -1) = the template name
+
+  GraphicsWindow.PenWidth = 1
+  GraphicsWindow.PenColor = "Black"
+  GraphicsWindow.BrushColor = Array.GetValue(template, "color")
+  
+  For i = 0 to BOXES - 1
+    s = Shapes.AddRectangle(BWIDTH, BWIDTH)
+    Shapes.Move(s, -BWIDTH, -BWIDTH) ' sair da tela
+    Array.SetValue(h, i, s)
+  EndFor
+EndSub
+
+Sub MovePiece 'em: ypos, xpos, h. ypos / xpos é 0-19, representando a coordenada da caixa superior / esquerda da peça na tela. h retornado por CreatePiece
+  For i = 0 to BOXES - 1
+    v = Array.GetValue(Array.GetValue(h, -1), i)  ' Array.GetValue (h, -1) = the template name
+    x = Math.Floor(v/10)
+    y = Math.Remainder(v, 10)
+    
+    'Array.GetValue (h, i) = part box h.
+     'xpos / ypos = são vazios de forma. x / y é o deslocamento da caixa na forma.
+    Shapes.Move(Array.GetValue(h, i), XOFFSET + xpos * BWIDTH + x * BWIDTH, YOFFSET + ypos * BWIDTH + y * BWIDTH)
+  EndFor
+EndSub
+
+Sub ValidateMove ' em: ypos, xpos, h, moveDirection ret: invalidMove = 1 ou -1 ou 2 se a movimentação for inválida, caso contrário, 0
+  i = 0
+  invalidMove = 0
+  While i < BOXES
+    v = Array.GetValue(Array.GetValue(h, -1), i)  ' Array.GetValue(h, -1) = the template name
+
+    'x / y é o deslocamento da caixa na forma.
+    x = Math.Floor(v/10)
+    y = Math.Remainder(v, 10)
+    
+    If (x + xpos + moveDirection) < 0 Then
+      invalidMove = -1
+      i = BOXES ' força saindo do circuito
+    EndIf
+
+    If (x + xpos + moveDirection) >= CWIDTH Then
+      invalidMove = 1
+      i = BOXES ' força saindo do circuito
+    EndIf
+
+    If Array.GetValue("c", (x + xpos + moveDirection) + (y + ypos) * CWIDTH) <> "." Then
+      invalidMove = 2
+      i = BOXES ' força saindo do circuito
+    EndIf
+
+    i = i + 1
+  EndWhile
+EndSub
+
+
+Sub CheckStop ' em: ypos, xpos, h ret: concluído
+  done = 0
+  i = 0
+  While i < BOXES
+    v = Array.GetValue(Array.GetValue(h, -1), i)  'Array.GetValue (h, -1) = the template name
+
+    'x / y é o deslocamento da caixa na forma.
+    x = Math.Floor(v/10)
+    y = Math.Remainder(v, 10)
+    
+    If y + ypos > CHEIGHT Or Array.GetValue("c", (x + xpos) + (y + ypos) * CWIDTH) <> "." Then
+      done = 1
+      i = BOXES ' força saindo do circuito
+    EndIf
+
+    i = i + 1
+  EndWhile
+
+  ' Se precisarmos parar a peça, mova as alças da caixa para a tela
+  If done = 1 Then
+    For i = 0 to BOXES - 1
+      v = Array.GetValue(Array.GetValue(h, -1), i)	'Array.GetValue(h, -1) = the template name
+      'x = Math.Floor(v/10)
+      'y = Math.Remainder(v, 10)      
+      Array.SetValue("c", (Math.Floor(v/10) + xpos) + (Math.Remainder(v, 10) + ypos - 1) * CWIDTH, Array.GetValue(h, i))
+    EndFor
+    
+    ' 1 ponto por cada peça jogada com sucesso
+    score = score + 1
+    PrintScore()
+     
+    ' Excluir linhas clareadas
+    DeleteLines()
+  EndIf
+EndSub
+
+
+Sub DeleteLines
+  linesCleared = 0
+  
+  ' Iterar sobre cada linha, começando da parte inferior
+  For y = CHEIGHT - 1 to 0 Step -1  
+    
+    ' Verifique se a linha inteira está preenchida
+    x = CWIDTH
+    While x = CWIDTH
+      x = 0
+      While x < CWIDTH
+        piece = Array.GetValue("c", x + y * CWIDTH)
+        If piece = "." then
+          x = CWIDTH
+        EndIf
+        x = x + 1
+      EndWhile
+      
+      'se nenhum deles estiver vazio (ou seja, "."), remova a linha.
+      If x = CWIDTH Then
+        
+        ' Excluir a linha
+        For x1 = 0 to CWIDTH - 1
+          Shapes.Remove(Array.GetValue("c", x1 + y * CWIDTH))
+        EndFor
+        linesCleared = linesCleared + 1
+        
+        ' Mova todo o resto para baixo um.
+        For y1 = y To 1 Step -1
+          For x1 = 0 to CWIDTH - 1
+            piece = Array.GetValue("c", x1 + (y1 - 1) * CWIDTH)
+            Array.SetValue("c", x1 + y1 * CWIDTH, piece)
+            Shapes.Move(piece, Shapes.GetLeft(piece), Shapes.GetTop(piece) + BWIDTH)
+          EndFor
+        EndFor
+      EndIf
+    EndWhile
+  EndFor
+  
+  If linesCleared > 0 Then
+    score = score + 100 * Math.Round(linesCleared * 2.15 - 1)
+    PrintScore()
+  EndIf
+EndSub
+
+Sub SetupCanvas
+   'GraphicsWindow.DrawResizedImage( Flickr.GetRandomPicture( "bricks" ), 0, 0, GraphicsWindow.Width, GraphicsWindow.Height)      ' Insent comands
+
+  
+  GraphicsWindow.BrushColor = GraphicsWindow.BackgroundColor
+  GraphicsWindow.FillRectangle(XOFFSET, YOFFSET, CWIDTH*BWIDTH, CHEIGHT*BWIDTH)
+
+  Program.Delay(200)
+  GraphicsWindow.PenWidth = 1
+  GraphicsWindow.PenColor = "Pink"
+  For x = 0 To CWIDTH-1
+    For y = 0 To CHEIGHT-1
+      Array.SetValue("c", x + y * CWIDTH, ".") ' "." indica que o local está livre
+      GraphicsWindow.DrawRectangle(XOFFSET + x * BWIDTH, YOFFSET + y * BWIDTH, BWIDTH, BWIDTH)
+    EndFor
+  EndFor
+
+  GraphicsWindow.PenWidth = 4
+  GraphicsWindow.PenColor = "Black"
+  GraphicsWindow.DrawLine(XOFFSET, YOFFSET, XOFFSET, YOFFSET + CHEIGHT*BWIDTH)
+  GraphicsWindow.DrawLine(XOFFSET + CWIDTH*BWIDTH, YOFFSET, XOFFSET + CWIDTH*BWIDTH, YOFFSET + CHEIGHT*BWIDTH)
+  GraphicsWindow.DrawLine(XOFFSET, YOFFSET + CHEIGHT*BWIDTH, XOFFSET + CWIDTH*BWIDTH, YOFFSET + CHEIGHT*BWIDTH)
+  
+  GraphicsWindow.PenColor = "Lime"
+  GraphicsWindow.DrawLine(XOFFSET - 4, YOFFSET, XOFFSET - 4, YOFFSET + CHEIGHT*BWIDTH + 6)
+  GraphicsWindow.DrawLine(XOFFSET + CWIDTH*BWIDTH + 4, YOFFSET, XOFFSET + CWIDTH*BWIDTH + 4, YOFFSET + CHEIGHT*BWIDTH + 6)
+  GraphicsWindow.DrawLine(XOFFSET - 4, YOFFSET + CHEIGHT*BWIDTH + 4, XOFFSET + CWIDTH*BWIDTH + 4, YOFFSET + CHEIGHT*BWIDTH + 4)
+  
+  GraphicsWindow.PenColor = "Black"
+  GraphicsWindow.BrushColor = "Pink"
+  x = XOFFSET + PREVIEW_xpos * BWIDTH - BWIDTH
+  y = YOFFSET + PREVIEW_ypos * BWIDTH - BWIDTH
+  GraphicsWindow.FillRectangle(x, y, BWIDTH * 5, BWIDTH * 6)
+  GraphicsWindow.DrawRectangle(x, y, BWIDTH * 5, BWIDTH * 6)
+  
+  GraphicsWindow.FillRectangle(x - 20, y + 190, 310, 170)
+  GraphicsWindow.DrawRectangle(x - 20, y + 190, 310, 170)
+  
+  GraphicsWindow.BrushColor = "Black"
+  GraphicsWindow.FontItalic = "False"
+  GraphicsWindow.FontName = "Comic Sans MS"
+  GraphicsWindow.FontSize = 16
+  GraphicsWindow.DrawText(x, y + 200, "Teclas de controle do jogo:")
+  GraphicsWindow.DrawText(x + 5, y + 220, "Seta esquerda: Move para esquerda")
+  GraphicsWindow.DrawText(x + 5, y + 240, "Seta direita: Move para direita")
+  GraphicsWindow.DrawText(x + 5, y + 260, "Seta de cima: Rodar peça")
+  GraphicsWindow.DrawText(x + 5, y + 280, "Seta de baixo: Soltar peça")
+  GraphicsWindow.DrawText(x, y + 320, "Pressione para parar o jogo")                                  'Importante!!!
+
+  Program.Delay(200) ' sem esse atraso, o texto acima usará o tamanho da fonte da pontuação
+  GraphicsWindow.BrushColor = "Black"
+  GraphicsWindow.FontName = "Georgia"
+  GraphicsWindow.FontItalic = "True"
+  GraphicsWindow.FontSize = 36
+  GraphicsWindow.DrawText(x - 20, y + 400, "Small Basic Tetris")
+  Program.Delay(200) 'sem esse atraso, o texto acima usará o tamanho da fonte da pontuação 
+  GraphicsWindow.FontSize = 16
+  GraphicsWindow.DrawText(x - 20, y + 440, "ver.0.1")
+
+  Program.Delay(200) ' sem esse atraso, o texto acima usará o tamanho da fonte da pontuação
+  score = 0
+  PrintScore() 
+EndSub
+
+
+Sub PrintScore
+  GraphicsWindow.PenWidth = 4
+  GraphicsWindow.BrushColor = "Pink"
+  GraphicsWindow.FillRectangle(500, 65, 153, 50)
+  GraphicsWindow.BrushColor = "Black"
+  GraphicsWindow.DrawRectangle(500, 65, 153, 50)
+  GraphicsWindow.FontItalic = "False"
+  GraphicsWindow.FontSize = 32
+  GraphicsWindow.FontName = "Impact"
+  GraphicsWindow.BrushColor = "Black"
+  GraphicsWindow.DrawText(505, 70, Text.Append(Text.GetSubText( "00000000", 0, 8 - Text.GetLength( score ) ), score))
+EndSub
+
+
+Sub SetupTemplates
+  ' 
+'219/5000
+'cada peça tem 4 caixas.
+   'o índice de cada entrada em uma peça representa o número da caixa (1-4)
+   'o valor de cada entrada representa para a caixa coordenada de caixa com base em zero na peça: dezenas são x, unidades são y
+  '_X_
+  '_X_
+  '_XX
+
+  Array.SetValue("template1", 0, 10)
+  Array.SetValue("template1", 1, 11)
+  Array.SetValue("template1", 2, 12)
+  Array.SetValue("template1", 3, 22)
+  Array.SetValue("template1", "color", "Yellow")
+  Array.SetValue("template1", "dim", 3)
+  Array.SetValue("template1", "pviewx", -12)
+  Array.SetValue("template1", "pviewy", 12)
+
+
+  '_X_
+  '_X_
+  'XX_
+  Array.setValue("template2", 0, 10)
+  Array.SetValue("template2", 1, 11)
+  Array.SetValue("template2", 2, 12)
+  Array.SetValue("template2", 3, 02)
+  Array.SetValue("template2", "color", "Magenta")
+  Array.SetValue("template2", "dim", 3)
+  Array.SetValue("template2", "pviewx", 12)
+  Array.SetValue("template2", "pviewy", 12)
+  
+  
+  '_X_
+  'XXX
+  '_
+  Array.SetValue("template3", 0, 10)
+  Array.SetValue("template3", 1, 01)
+  Array.SetValue("template3", 2, 11)
+  Array.SetValue("template3", 3, 21)
+  Array.SetValue("template3", "color", "Gray")
+  Array.SetValue("template3", "dim", 3)
+  Array.SetValue("template3", "pviewx", 0)
+  Array.SetValue("template3", "pviewy", 25)
+  
+  
+  'XX_
+  'XX_
+  '_
+  Array.SetValue("template4", 0, 00)
+  Array.SetValue("template4", 1, 10)
+  Array.SetValue("template4", 2, 01)
+  Array.SetValue("template4", 3, 11)
+  Array.SetValue("template4", "color", "Cyan")
+  Array.SetValue("template4", "dim", 2)
+  Array.SetValue("template4", "pviewx", 12)
+  Array.SetValue("template4", "pviewy", 25)
+  
+  
+  'XX_
+  '_XX
+  '_
+  Array.SetValue("template5", 0, 00)
+  Array.SetValue("template5", 1, 10)
+  Array.SetValue("template5", 2, 11)
+  Array.SetValue("template5", 3, 21)
+  Array.SetValue("template5", "color", "Green")
+  Array.SetValue("template5", "dim", 3)
+  Array.SetValue("template5", "pviewx", 0)
+  Array.SetValue("template5", "pviewy", 25)
+  
+  
+  '_XX
+  'XX_
+  '_
+  Array.SetValue("template6", 0, 10)
+  Array.SetValue("template6", 1, 20)
+  Array.SetValue("template6", 2, 01)
+  Array.SetValue("template6", 3, 11)
+  Array.SetValue("template6", "color", "Blue")
+  Array.SetValue("template6", "dim", 3)
+  Array.SetValue("template6", "pviewx", 0)
+  Array.SetValue("template6", "pviewy", 25)
+  
+  
+  '_X
+  '_X
+  '_X
+  '_X
+  Array.SetValue("template7", 0, 10)
+  Array.SetValue("template7", 1, 11)
+  Array.SetValue("template7", 2, 12)
+  Array.SetValue("template7", 3, 13)
+  Array.SetValue("template7", "color", "Red")
+  Array.SetValue("template7", "dim", 4)
+  Array.SetValue("template7", "pviewx", 0)
+  Array.SetValue("template7", "pviewy", 0)
+EndSub
+
+
+
+

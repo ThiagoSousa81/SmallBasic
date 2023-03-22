@@ -1,0 +1,39 @@
+'Lição 2: Olá, Tartaruga
+Turtle.Show()
+
+'Lição 3: Vamos dar algo à tartaruga para fazer
+GraphicsWindow.DrawImage("https://aka.ms/mz1", 0, 0)
+Turtle.X = 50
+Turtle.Y = 50
+
+'Lição 6: Vencedor, Vencedor! (parte 1 de 2)
+'Essas duas linhas podem estar em qualquer lugar APÓS a imagem ser desenhada
+'mas ANTES de definir a PenColor para a tartaruga
+GraphicsWindow.PenColor = "yellow"
+GraphicsWindow.DrawRectangle(20, 240, 50, 40)
+
+'Os desafios da lição 4 iriam aqui
+'Você precisa defini-las ANTES que a tartaruga comece a se mover
+GraphicsWindow.PenColor = GraphicsWindow.GetRandomColor()
+Turtle.Speed = 7
+
+'Lição 4: mexa-se! código é substituído pela lição 5:
+'somos mais espertos que uma tartaruga
+GraphicsWindow.KeyDown = WhenKeyPressed
+Sub WhenKeyPressed
+  If GraphicsWindow.LastKey = "Up" Then
+    Turtle.Move(25)
+  EndIf
+  If GraphicsWindow.LastKey = "Right" Then
+    Turtle.TurnRight()
+ EndIf
+ If GraphicsWindow.LastKey = "Left" Then
+  Turtle.TurnLeft()
+  EndIf
+
+ 'Lição 6: Vencedor, Vencedor! (parte 2 de 2)
+  If Turtle.X > 20 And Turtle.X < 20+50 And Turtle.Y > 240 And Turtle.Y < 280 Then
+    GraphicsWindow.ShowMessage("Você Venceu!", "Labirinto")
+    GraphicsWindow.Hide()
+  EndIf
+EndSub
